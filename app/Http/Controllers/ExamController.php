@@ -24,6 +24,11 @@ class ExamController extends Controller
                 ->with('message', 'You cannot enter someone else\'s exam.');
         }
 
+        if($examService->isExpired($questionnaireUser)) {
+            return redirect('/')
+                ->with('message', 'Exam has already expired.');
+        }
+
         if($examService->isExamCompleted($questionnaireUser)) {
             return redirect('/')
                 ->with('message', 'You have already completed this exam.');

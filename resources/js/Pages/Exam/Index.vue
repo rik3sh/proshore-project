@@ -2,11 +2,15 @@
 import ExamLayout from '@/Layouts/ExamLayout.vue';
 import { Head, Link, useForm, router } from '@inertiajs/vue3';
 import { reactive } from 'vue'
+import {useToast} from 'vue-toast-notification';
+import 'vue-toast-notification/dist/theme-sugar.css';
 
 defineProps({
-    hasError: true,
+    hasError: false,
     questionnaireUser: Object
 });
+
+const $toast = useToast();
 
 const form = reactive({
     option_id: [],
@@ -14,17 +18,15 @@ const form = reactive({
 })
 
 function handleFormSubmit(questionnaireUser) {
-    console.log('submitted');
     const selectedOptions = form.option_id.filter(option => option !== null)
 
     if (selectedOptions.length !== questionnaireUser.questionnaire.questions.length) {
-        hasError = true;
+        let instance = $toast.error('Some of the questions are left to be answered.');
         return;
     }
     
     form.option_id = selectedOptions;
     form.code = questionnaireUser.exam_code;
-    console.log(selectedOptions);
     
     // Post the answers to the server when all questions are answered
     router.post(route('exam-store'), form);
@@ -54,7 +56,7 @@ function handleFormSubmit(questionnaireUser) {
                                 
                                 <div class="py-4">
                                     <div v-for="opt in ques.options">
-                                        <input type="radio" v-model="form.option_id[index]" name="option_id_{{ ques.id }}" :value="opt.id" required> {{ opt.answer }}
+                                        <input type="radio" v-model="form.option_id[index]" name="option_id_{{ ques.id }}" :value="opt.id"> {{ opt.answer }}
                                     </div>
                                 </div>
                             </form>

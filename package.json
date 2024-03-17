@@ -18,10 +18,6 @@
         "vue": "^3.4.0"
     },
     "dependencies": {
-        "datatables.net": "^2.0.2",
-        "datatables.net-dt": "^2.0.2",
-        "datatables.net-select": "^2.0.0",
-        "datatables.net-vue3": "^3.0.1",
-        "jquery": "^3.7.1"
+        "vue-toast-notification": "^3.1.2"
     }
 }

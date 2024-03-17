@@ -42,6 +42,17 @@ class ExamService
     {
         return $questionnaireUser->status == QuestionnaireUser::STATUS_COMPLETED;
     }
+    
+    /**
+     * Checks if exam has expired.
+     *
+     * @param  QuestionnaireUser $questionnaireUser - Provided QuestionnaireUser instance.
+     * @return bool - Whether exam has been completed or not.
+    */
+    public function isExpired(QuestionnaireUser $questionnaireUser): bool
+    {
+        return $questionnaireUser->questionnaire->expiry_date <= date('Y-m-d');
+    }
 
     /**
      * Updates status of provided questionnaire user to ONGOING and saves it.

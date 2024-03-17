@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
         
         User::factory(5)->create();
 
-        Question::factory()->count(20)->with_options()->create();
+        Question::factory()->count(50)->with_options()->create();
     }
 }
