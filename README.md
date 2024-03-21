@@ -8,4 +8,4 @@
 6.	Run `php artisan key:generate`.
 7.	Run `php artisan migrate --seed`.
 8.	Either run `php artisan serve` or use any other methods you want to run the project.
-9.	You will need to run `php artisan queue:work` in a separate terminal and keep it running for mail queuesnpm inst
+9.	You will need to run `php artisan queue:work` in a separate terminal and keep it running for mail queues
